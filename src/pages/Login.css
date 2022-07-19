@@ -1,0 +1,56 @@
+.sign-section{
+    display: flex;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    min-width: 500px;
+    position: relative;
+    margin: 200px auto;
+    max-width: 900px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+}
+
+.login-body{
+    display: flex;
+    justify-content: center;
+}
+.field{
+    width: 500px;
+    height: 589px;
+}
+.labelIcon {
+    margin-bottom: 12px;
+}
+.input-box{
+    border: 1px solid #8695a7;
+    background: #f0f7ff;
+    margin: 0 0 2px;
+    font: 500 15px/1.2 Roboto;
+    padding: 11px 12px;
+    color: #000;
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    transition: .5s ease;
+    border-radius: 0;
+    max-width: 420px;
+}
+.sgnbtn{
+    width: 100%;
+}
+.signupbtn{
+    font-size: 15px;
+    height: 50px;
+    padding: 0 10px;
+    background: #004979;
+    text-align: center;
+    text-transform: uppercase;
+    border: 0;
+    color: #fff;
+    width: 100%;
+    max-width: 446px;
+    cursor: pointer;
+    font: 500 16px/1.2'Roboto';
+}
