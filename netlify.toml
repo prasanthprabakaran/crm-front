@@ -1,6 +1,6 @@
 [build]
-  publish = "out/"
-  command = "CI=false npm run build && npm run export"
+  publish = "out"
+  command = "CI=false npm run build "
   
 
 # Redirect rule defined in "_redirect" isn't working.
