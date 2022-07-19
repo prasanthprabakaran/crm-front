@@ -1,5 +1,4 @@
 [build]
-  publish = "out/"
   command = "CI=false yarn build"
 
 # Redirect rule defined in "_redirect" isn't working.
