@@ -1,10 +1,12 @@
 [build]
-  command = "CI=false yarn build"
+  publish = "out/"
+  command = "CI=false npm build"
+  
 
 # Redirect rule defined in "_redirect" isn't working.
 # using netlify.toml instead.
 # Refer to the documentation - https://www.netlify.com/docs/netlify-toml-reference/#getting-started
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "/index.html"
   status = 200
