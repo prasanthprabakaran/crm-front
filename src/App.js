@@ -1,23 +1,21 @@
-import { BrowserRouter as Router,Routes, Route } from "react-router-dom";
-import ForgetPassword from "./pages/ForgetPassword";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Signup from "./pages/Signup";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from './screens/Login';
+import Register from "./screens/Register";
+import ForgotPassword from './screens/ForgotPassword';
+import ResetPassword from './screens/ResetPassword';
+import Private from './screens/Private';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
         <Routes>
-          <Route path="/" element={<Login/>} />
-          <Route path="/sign_up" element={<Signup/>} />
-          <Route path="/forget_password" element={<ForgetPassword/>} />
-          <Route path="/home" element={<Home/>} />
+          <Route path="/" element={<Private/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
+          <Route path="/forgotpassword" element={<ForgotPassword/>} />
+          <Route path="/resetpassword/:resetToken" element={<ResetPassword/>} />
         </Routes>
-        <Footer/>
       </Router>
     </div>
   );
