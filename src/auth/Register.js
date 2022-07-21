@@ -31,7 +31,7 @@ const Register = ({ history }) => {
 
     try {
       const { data } = await fetch.post(
-        "/api/V2/auth/register",
+        "https://crm-client-prasanth.herokuapp.com/api/V2/auth/register",
         {
           username,
           firstname,

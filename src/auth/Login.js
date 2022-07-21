@@ -24,7 +24,7 @@ const Login = ({ history }) => {
 
     try {
       const { data } = await fetch.post(
-        "/api/V2/auth/login",
+        "https://crm-client-prasanth.herokuapp.com/api/V2/auth/login",
         {
           email,
           password,
