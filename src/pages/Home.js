@@ -1,7 +1,16 @@
 
 const Home = () => {
+
+  const handleLogout = ()=> {
+    localStorage.removeItem("authToken");
+    window.location.reload();
+  }
   return (
-    <div>Home</div>
+    <div>
+      <button onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
   )
 }
 
