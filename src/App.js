@@ -21,10 +21,15 @@ function App() {
           <Route exact path="/register" element={<Register/>} />
           <Route exact path="/forgotpassword" element={<ForgotPassword/>} />
           <Route exact path="/resetpassword/:resetToken" element={<ResetPassword/>} />
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Router>
     </div>
   );
+}
+
+function NotFound(){
+  return <h1>404 Not Found</h1>
 }
 
 export default App;
