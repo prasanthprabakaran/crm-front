@@ -1,8 +1,11 @@
 import { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
-const Register = ({ history }) => {
+
+const Register = () => {
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -10,9 +13,11 @@ const Register = ({ history }) => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const registerUser = async (e) => {
     e.preventDefault();
+
 
     const config = {
       header: {
@@ -30,7 +35,7 @@ const Register = ({ history }) => {
     }
 
     try {
-      const { data } = await fetch.post(
+      const { data } = await axios.post(
         "https://crm-client-prasanth.herokuapp.com/api/V2/auth/register",
         {
           username,
@@ -43,12 +48,14 @@ const Register = ({ history }) => {
       );
 
       localStorage.setItem("authToken", data.token);
-      history.push("/");
+      // this.props.history.push("/");
+      navigate('/');
+      
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
         setError("");
-      }, 4000);
+      }, 5000);
     }
   };
 
@@ -144,4 +151,4 @@ const Register = ({ history }) => {
   );
 };
 
-export default Register;
+export default Register ;

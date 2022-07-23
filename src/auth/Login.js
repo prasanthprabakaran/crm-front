@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = ({ history }) => {
@@ -7,11 +9,13 @@ const Login = ({ history }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const navigate = useNavigate();
+
   useEffect(()=>{
     if (localStorage.getItem('authToken')) {
-        history.push('/');
+        navigate("/");
     }
-  },[history]);
+  },[history, navigate]);
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -23,7 +27,7 @@ const Login = ({ history }) => {
     };
 
     try {
-      const { data } = await fetch.post(
+      const { data } = await axios.post(
         "https://crm-client-prasanth.herokuapp.com/api/V2/auth/login",
         {
           email,
@@ -33,7 +37,7 @@ const Login = ({ history }) => {
       );
 
       localStorage.setItem("authToken", data.token);
-      history.push("/");
+      navigate("/");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {

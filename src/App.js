@@ -6,6 +6,7 @@ import ResetPassword from './auth/ResetPassword';
 import Home from "./pages/Home";
 import PrivateRoute from "./components/routing/PrivateRoute";
 
+
 function App() {
   return (
     <div className="App">

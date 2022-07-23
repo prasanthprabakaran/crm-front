@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import "./ForgotPassword.css";
 
 const ForgotPassword = () => {
@@ -16,7 +17,7 @@ const ForgotPassword = () => {
     };
 
     try {
-      const { data } = await fetch.post(
+      const { data } = await axios.post(
         "https://crm-client-prasanth.herokuapp.com/api/V2/auth/forgotpassword",
         {
           email,

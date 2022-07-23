@@ -1,5 +1,6 @@
 import {useState} from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import './ResetPassword.css';
 
 const ResetPassword = ({match}) => {
@@ -28,7 +29,7 @@ const ResetPassword = ({match}) => {
     }
 
     try {
-      const { data } = await fetch.post(
+      const { data } = await axios.post(
         `https://crm-client-prasanth.herokuapp.com/api/V2/auth/resetpassword/${match.params.resetToken}`,
         {
           password,
