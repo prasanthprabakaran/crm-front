@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 import './ResetPassword.css';
 
@@ -9,6 +9,7 @@ const ResetPassword = ({match}) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const params = useParams();
 
   const resetPasswordUser = async (e) => {
     e.preventDefault();
@@ -29,15 +30,16 @@ const ResetPassword = ({match}) => {
     }
 
     try {
-      const { data } = await axios.post(
-        `https://crm-client-prasanth.herokuapp.com/api/V2/auth/resetpassword/${match.params.resetToken}`,
+      const { data } = await axios.put(
+        `https://crm-client-prasanth.herokuapp.com/api/V2/auth/resetpassword/${params.resetToken}`,
         {
           password,
         },
         config
       );
-
+        console.log(data);
       setSuccess(data.data);
+      Navigate("/");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
