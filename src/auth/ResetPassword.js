@@ -37,7 +37,6 @@ const ResetPassword = ({match}) => {
         },
         config
       );
-        console.log(data);
       setSuccess(data.data);
       Navigate("/");
     } catch (error) {
