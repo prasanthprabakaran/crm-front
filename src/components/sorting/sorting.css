@@ -1,0 +1,26 @@
+.sorted-block{
+    text-align: center;
+    border: 1px solid #eee;
+    padding: 1rem;
+    min-height: 300px;
+    background-color: #fff;
+    box-shadow: 0 3px 10px 0 #6376814d;
+    transition: box-shadow 0.25s cubic-bezier(0.32,0.01,0,1);
+    margin : 0px;
+    border-radius: 5px;
+}
+.table-block{
+    display: grid;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th,td{
+    border-color: var(--first-color);
+}
+th {
+    cursor: pointer;
+    background-color: var(--first-color-alt);
+}
