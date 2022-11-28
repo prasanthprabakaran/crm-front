@@ -15,14 +15,14 @@ const Sidebar = () => {
       <header className={`header ${show ? "space-toggle" : null}`}>
         <div className="header-toggle" onClick={() => setShow(!show)}>
           <i className={`fas fa-bars ${show ? "fa-solid fa-xmark" : null}`}></i>
-          <Toolbar className="toolbar">
+        </div>
+        <Toolbar className="toolbar">
             <span>Home</span>
             <div>
               <i class="fas fa-sign-out-alt"></i>
               <span>Logout</span>
             </div>
           </Toolbar>
-        </div>
       </header>
 
       <aside className={`sidebar ${show ? "show" : null}`}>
