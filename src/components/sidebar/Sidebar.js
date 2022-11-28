@@ -15,11 +15,11 @@ const Sidebar = () => {
       <header className={`header ${show ? "space-toggle" : null}`}>
         <div className="header-toggle" onClick={() => setShow(!show)}>
           <i className={`fas fa-bars ${show ? "fa-solid fa-xmark" : null}`}></i>
-          <Toolbar>
+          <Toolbar className="toolbar">
             <span>Home</span>
             <div>
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
             </div>
           </Toolbar>
         </div>
@@ -42,16 +42,16 @@ const Sidebar = () => {
                 <span className="nav-link-name">Customer</span>
               </Link>
               <Link to="/gallery" className="nav-link">
-              <i class="fa-solid fa-clipboard-list"></i>
-                <span className="nav-link-name nav-link-icon">Open Tickets</span>
+                <i class="fa-solid fa-clipboard-list nav-link-icon"></i>
+                <span className="nav-link-name">Open Tickets</span>
               </Link>
               <Link to="/gallery" className="nav-link">
-              <i className="fa-solid fa-clipboard-check"></i>
-                <span className="nav-link-name nav-link-icon">
-                  Closed Tickets
-                </span>
+                <i className="fa-solid fa-clipboard-check nav-link-icon"></i>
+                <span className="nav-link-name">Closed Tickets</span>
               </Link>
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={handleLogout}>
+                <i class="fas fa-sign-out-alt nav-link-icon"></i>
+              </button>
             </div>
           </div>
 
