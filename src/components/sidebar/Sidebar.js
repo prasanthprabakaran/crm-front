@@ -17,6 +17,10 @@ const Sidebar = () => {
           <i className={`fas fa-bars ${show ? "fa-solid fa-xmark" : null}`}></i>
           <Toolbar>
             <span>Home</span>
+            <div>
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+            </div>
           </Toolbar>
         </div>
       </header>
@@ -34,17 +38,17 @@ const Sidebar = () => {
                 <span className="nav-link-name">Dashboard</span>
               </Link>
               <Link to="/hotel" className="nav-link">
-                <i className="fa-solid fa-chalkboard-user nav-link-icon"></i>{" "}
-                <span className="nav-link-name">Teacher</span>
+                <i className="fa-solid fa-users nav-link-icon"></i>
+                <span className="nav-link-name">Customer</span>
               </Link>
               <Link to="/gallery" className="nav-link">
-                <i className="fa-solid fa-graduation-cap"></i>
-                <span className="nav-link-name nav-link-icon">Student</span>
+              <i class="fa-solid fa-clipboard-list"></i>
+                <span className="nav-link-name nav-link-icon">Open Tickets</span>
               </Link>
               <Link to="/gallery" className="nav-link">
-                <i className="fa-solid fa-scroll"></i>
+              <i className="fa-solid fa-clipboard-check"></i>
                 <span className="nav-link-name nav-link-icon">
-                  Announcements
+                  Closed Tickets
                 </span>
               </Link>
               <button onClick={handleLogout}>Logout</button>
