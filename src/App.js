@@ -1,35 +1,67 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from './auth/Login';
-import Register from "./auth/Register";
-import ForgotPassword from './auth/ForgotPassword';
-import ResetPassword from './auth/ResetPassword';
-import Home from "./pages/Home";
-import PrivateRoute from "./components/routing/PrivateRoute";
-import Private from "./auth/Private";
-
+import { Routes, Route } from "react-router-dom";
+import DashLayout from "./components/DashLayout";
+import Layout from "./components/Layout";
+import Public from "./components/Public";
+import Login from "./features/auth/Login";
+import Welcome from "./features/auth/Welcome";
+import TaskList from "./features/tasksList/TaskList";
+import UsersList from "./features/users/UsersList";
+import EditUser from "./features/users/EditUser";
+import NewUserForm from "./features/users/NewUserForm";
+import EditTask from "./features/tasksList/EditTask";
+import NewTask from "./features/tasksList/NewTask";
+import Prefetch from "./features/auth/Prefetch";
+import PersistLogin from "./features/auth/PersistLogin";
+import RequireAuth from "./features/auth/RequireAuth";
+import { ROLES } from "./config/roles";
+import useTitle from './hooks/useTitle'
 
 function App() {
+  useTitle('CRM App')
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<PrivateRoute/>}>
-            <Route exact path="/" element={<Home />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {/* public routes */}
+        <Route index element={<Public />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<NotFound/>}/>
+
+        {/* Protected Routes */}
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />} >
+            <Route element={<Prefetch />}>
+              <Route path="dash" element={<DashLayout />}>
+
+                <Route index element={<Welcome />} />
+
+                {/* users */}
+                <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]}/>}>
+                  <Route path="users">
+                    <Route index element={<UsersList />} />
+                    <Route path=":id" element={<EditUser />} />
+                    <Route path="new" element={<NewUserForm />} />
+                  </Route>
+                </Route>
+
+                {/* tasks */}
+                <Route path="tasks">
+                  <Route index element={<TaskList />} />
+                  <Route path=":id" element={<EditTask />} />
+                  <Route path="new" element={<NewTask />} />
+                </Route>
+              </Route>
+              {/* End Dash */}
+            </Route>
           </Route>
-          <Route exact path="/private" element={<Private/>} />
-          <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/register" element={<Register/>} />
-          <Route exact path="/forgotpassword" element={<ForgotPassword/>} />
-          <Route exact path="/resetpassword/:resetToken" element={<ResetPassword/>} />
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
-      </Router>
-    </div>
+        </Route>
+        {/* End Protected Routes */}
+      </Route>
+    </Routes>
   );
 }
 
-function NotFound(){
-  return <h1>404 Not Found</h1>
+const NotFound = () =>{
+  return <h2>404 Not Found</h2>
 }
 
 export default App;
