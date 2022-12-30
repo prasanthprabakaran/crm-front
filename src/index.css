@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap');
 
 * {
   margin: 0;
@@ -123,6 +123,9 @@ a:focus-visible {
   border-top: 2px solid var(--BORDER-COLOR);
   border-bottom: 2px solid var(--BORDER-COLOR);
   padding: 1em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .public__addr {
