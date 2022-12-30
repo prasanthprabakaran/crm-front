@@ -120,6 +120,8 @@ const Login = () => {
       </main>
       <footer>
         <Link to="/">Back to Home</Link>
+        <p>Employee:Jona , pwd:Jona1#</p>
+        <p>Manger: John, pwd: John1#</p>
       </footer>
     </section>
   );
