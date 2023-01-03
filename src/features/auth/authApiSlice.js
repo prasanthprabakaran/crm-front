@@ -45,6 +45,49 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 }
             }
         }),
+        forgetPassword: builder.mutation({
+            query: (email) => ({
+                url: "auth/forgetpassword",
+                method: "POST",
+                body: {email},
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled}) {
+                try {
+                    await queryFulfilled
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        }),
+        resetPassword: builder.mutation({
+            query: ({token}) => ({
+                url: `auth/resetpassword/${token.token}`,
+                method: "POST",
+                body: {password: token.password},
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled}) {
+                try {
+                    await queryFulfilled
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        }),
+        emailConfirmation: builder.mutation({
+            query: (email) => ({
+                url: '/auth/confirm-email',
+                method: 'POST',
+                body: { email },
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled}) {
+                try {
+                    await queryFulfilled
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            
+        })
 
     })
 
@@ -54,6 +97,9 @@ export const {
     useLoginMutation,
     useSendLogoutMutation,
     useRefreshMutation,
+    useForgetPasswordMutation,
+    useResetPasswordMutation,
+    useEmailConfirmationMutation
 } = authApiSlice
 
 // register: builder.mutation({

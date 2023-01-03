@@ -1,9 +1,10 @@
+import "./Login.css";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "./authApiSlice";
+import { setCredentials } from "../../features/auth/authSlice";
+import { useLoginMutation } from "../../features/auth/authApiSlice";
 
 import usePersist from "../../hooks/usePersist";
 import { PulseLoader } from "react-spinners";
@@ -73,39 +74,43 @@ const Login = () => {
     );
 
   const content = (
-    <section className="public">
-      <header>
-        <h1>Employee Login</h1>
-      </header>
+    <section className="login-screen">
       <main className="login">
-        <p ref={errRef} className={errClass} aria-live="assertive">
-          {errMsg}
-        </p>
-
-        <form className="form" onSubmit={handleSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input
-            className="form__input"
-            type="text"
-            id="username"
-            ref={userRef}
-            value={username}
-            onChange={handleUserInput}
-            autoComplete="off"
-            required
-          />
-
-          <label htmlFor="password">Password:</label>
-          <input
-            className="form__input"
-            type="password"
-            id="password"
-            onChange={handlePwdInput}
-            value={password}
-            required
-          />
-          <button className="form__submit-button">Sign In</button>
-
+        <form className="login-screen-form" onSubmit={handleSubmit}>
+          <p ref={errRef} className={errClass} aria-live="assertive">
+            {errMsg}
+          </p>
+          <h3 className="Login-screen-title">Login</h3>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              className="form__input"
+              type="text"
+              id="username"
+              ref={userRef}
+              value={username}
+              onChange={handleUserInput}
+              autoComplete="off"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:{""}</label>
+            <input
+              className="form__input"
+              type="password"
+              id="password"
+              onChange={handlePwdInput}
+              value={password}
+              required
+            />
+            <Link to="/forgotpassword">
+              <h6>ForgetPassword?</h6>
+            </Link>
+          </div>
+          <div className="submit-btn">
+            <button className="form__submit-button">Sign In</button>
+          </div>
           <label htmlFor="persist" className="form__persist">
             <input
               type="checkbox"
@@ -114,12 +119,14 @@ const Login = () => {
               onChange={handleToggle}
               checked={persist}
             />
-            Trust This Device
-          </label>
+            Remember me
+          </label>{" "}
+          <br />
+          <Link to="/"><u>Back to Home</u></Link>
         </form>
       </main>
       <footer>
-        <Link to="/">Back to Home</Link>
+      Credentials:
         <p>Employee:Jona , pwd:Jona1#</p>
         <p>Manger: John, pwd: John1#</p>
       </footer>

@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import DashLayout from "./components/DashLayout";
 import Layout from "./components/Layout";
 import Public from "./components/Public";
-import Login from "./features/auth/Login";
-import Welcome from "./features/auth/Welcome";
+import Login from "./components/auth/Login";
+import Welcome from "./components/auth/Welcome";
 import TaskList from "./features/tasksList/TaskList";
 import UsersList from "./features/users/UsersList";
 import EditUser from "./features/users/EditUser";
@@ -15,6 +15,8 @@ import PersistLogin from "./features/auth/PersistLogin";
 import RequireAuth from "./features/auth/RequireAuth";
 import { ROLES } from "./config/roles";
 import useTitle from './hooks/useTitle'
+import ForgotPassword from "./components/auth/ForgotPassword";
+import ResetPassword from "./components/auth/ResetPassword";
 
 function App() {
   useTitle('CRM App')
@@ -25,6 +27,8 @@ function App() {
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NotFound/>}/>
+        <Route path="forgotpassword" element={<ForgotPassword/>}/>
+        <Route path="resetPassword/:token" element={<ResetPassword/>}/>
 
         {/* Protected Routes */}
         <Route element={<PersistLogin />}>
