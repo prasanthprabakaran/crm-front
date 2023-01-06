@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     try {
-      forgetPassword({email});
+      forgetPassword({email:email});
     if (!setForgetPassword.isError) {
       setEmailSent(true);
     }

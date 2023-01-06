@@ -46,10 +46,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
             }
         }),
         forgetPassword: builder.mutation({
-            query: (email) => ({
+            query: ({email}) => ({
                 url: "auth/forgetpassword",
                 method: "POST",
-                body: {email},
+                body: {email: email},
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled}) {
                 try {
