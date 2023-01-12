@@ -1,4 +1,4 @@
-const Input = ({
+export const Input = ({
     handleChange,
     value,
     labelText,
