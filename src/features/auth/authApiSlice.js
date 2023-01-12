@@ -60,10 +60,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
             }
         }),
         resetPassword: builder.mutation({
-            query: ({token}) => ({
-                url: `auth/resetpassword/${token.token}`,
+            query: ({ passwordState, token}) => ({
+                url: `auth/resetpassword/${token}`,
                 method: "POST",
-                body: {password: token.password},
+                body: {...passwordState},
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled}) {
                 try {
