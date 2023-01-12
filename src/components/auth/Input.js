@@ -1,4 +1,4 @@
-export const Input = ({
+ const Input = ({
     handleChange,
     value,
     labelText,
@@ -25,3 +25,5 @@ export const Input = ({
     />
     </div>
 )
+
+export default Input;
