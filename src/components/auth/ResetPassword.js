@@ -59,7 +59,7 @@ const ResetPassword = () => {
                 autoComplete="true"
                 value={resetPassword}
                 onChange={(e) => setResetPassword(e.target.value)}
-                required={true}
+                required
               />
             </div>
             <div className="form-group">
@@ -67,7 +67,7 @@ const ResetPassword = () => {
               <input
                 type="password"
                 className="input-box"
-                id="confirmpassword"
+                id="confirm-password"
                 placeholder="Confirm new password"
                 autoComplete="true"
                 value={confirmPassword}

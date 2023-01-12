@@ -22,7 +22,7 @@ const EditUser = () => {
             paddingTop: "20px",
           }}
         >
-          <PulseLoader color={"#FFF"} />;
+          <PulseLoader color={"#FFF"} />
         </div>
       );
 
