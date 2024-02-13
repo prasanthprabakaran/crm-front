@@ -70,6 +70,7 @@ const Login = () => {
         }}
       >
         <PulseLoader color={"#FFF"} />
+        <span> Authenticating Please Wait ... </span>
       </div>
     );
 
