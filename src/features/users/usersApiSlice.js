@@ -11,9 +11,9 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: '/users',
         validateStatus: (response, result) => {
-            return response.status === 200 && !result.isError
+          return response.status === 200 && !result.isError
         },
-    }),
+      }),
       transformResponse: (responseData) => {
         const loadedUsers = responseData.map((user) => {
           user.id = user._id;
@@ -34,29 +34,22 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       query: (initialUserData) => ({
         url: "/users",
         method: "POST",
-        body: {
-          ...initialUserData,
-        },
+        body: { ...initialUserData },
       }),
       invalidatesTags: [{ type: "User", id: "LIST" }],
     }),
     updateUser: builder.mutation({
-      query: (initialUserData) => ({
-        url: "/users",
+      query: ({ id, ...rest }) => ({
+        url: `/users/${id}`,
         method: "PATCH",
-        body: {
-          ...initialUserData,
-        },
+        body: rest,
       }),
       invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
     deleteUser: builder.mutation({
       query: ({ id }) => ({
-        url: "/users",
+        url: `/users/${id}`,
         method: "DELETE",
-        body: {
-          id,
-        },
       }),
       invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
@@ -70,21 +63,17 @@ export const {
   useDeleteUserMutation,
 } = usersApiSlice;
 
-// returns the query result object
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select();
 
-// creates memoized selector
 const selectUsersData = createSelector(
   selectUsersResult,
-  (usersResult) => usersResult.data // normalized state object with ids & entities
+  (usersResult) => usersResult.data
 );
 
-//getSelectors creates these selectors and we rename them with aliases using destructuring
 export const {
   selectAll: selectAllUsers,
   selectById: selectUserById,
   selectIds: selectUserIds,
-  // Pass in a selector that returns the users slice of state
 } = usersAdapter.getSelectors(
   (state) => selectUsersData(state) ?? initialState
 );

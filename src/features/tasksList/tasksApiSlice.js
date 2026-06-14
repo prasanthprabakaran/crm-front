@@ -2,7 +2,7 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 
 const tasksAdapter = createEntityAdapter({
-  sortComparer: (a, b) => (a.completed === b.completed) ? 0: a.completed ? 1 : -1
+  sortComparer: (a, b) => (a.completed === b.completed) ? 0 : a.completed ? 1 : -1
 });
 
 const initialState = tasksAdapter.getInitialState();
@@ -13,7 +13,7 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: '/tasks',
         validateStatus: (response, result) => {
-            return response.status === 200 && !result.isError
+          return response.status === 200 && !result.isError
         },
       }),
       transformResponse: (responseData) => {
@@ -36,27 +36,22 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
       query: (initialTask) => ({
         url: "/tasks",
         method: "POST",
-        body: {
-          ...initialTask,
-        },
+        body: { ...initialTask },
       }),
       invalidatesTags: [{ type: "Task", id: "LIST" }],
     }),
     updateTask: builder.mutation({
-      query: (initialTask) => ({
-        url: "/tasks",
+      query: ({ id, ...rest }) => ({
+        url: `/tasks/${id}`,
         method: "PATCH",
-        body: {
-          ...initialTask,
-        },
+        body: rest,
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Task", id: arg.id }],
     }),
     deleteTask: builder.mutation({
       query: ({ id }) => ({
-        url: `/tasks`,
+        url: `/tasks/${id}`,
         method: "DELETE",
-        body: { id },
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Task", id: arg.id }],
     }),
@@ -70,21 +65,17 @@ export const {
   useDeleteTaskMutation,
 } = tasksApiSlice;
 
-// returns the query result object
 export const selectTasksResult = tasksApiSlice.endpoints.getTasks.select();
 
-// creates memoized selector
 const selectTasksData = createSelector(
   selectTasksResult,
-  (tasksResult) => tasksResult.data // normalized state object with ids & entities
+  (tasksResult) => tasksResult.data
 );
 
-//getSelectors creates these selectors and we rename them with aliases using destructuring
 export const {
   selectAll: selectAllTasks,
   selectById: selectTaskById,
   selectIds: selectTaskIds,
-  // Pass in a selector that returns the tasks slice of state
 } = tasksAdapter.getSelectors(
   (state) => selectTasksData(state) ?? initialState
 );
