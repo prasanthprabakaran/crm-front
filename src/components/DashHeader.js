@@ -17,7 +17,6 @@ const USERS_REGEX = /^\/dash\/users(\/)?$/;
 
 const DashHeader = () => {
   const { isManager, isAdmin } = useAuth();
-
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -45,11 +44,7 @@ const DashHeader = () => {
   let newTaskButton = null;
   if (TASKS_REGEX.test(pathname)) {
     newTaskButton = (
-      <button
-        className="icon-button"
-        title="New Task"
-        onClick={onNewTaskClicked}
-      >
+      <button className="icon-button" title="New Task" onClick={onNewTaskClicked}>
         <FontAwesomeIcon icon={faFileCirclePlus} />
       </button>
     );
@@ -58,11 +53,7 @@ const DashHeader = () => {
   let newUserButton = null;
   if (USERS_REGEX.test(pathname)) {
     newUserButton = (
-      <button
-        className="icon-button"
-        title="New User"
-        onClick={onNewUserClicked}
-      >
+      <button className="icon-button" title="New User" onClick={onNewUserClicked}>
         <FontAwesomeIcon icon={faUserPlus} />
       </button>
     );
@@ -89,7 +80,7 @@ const DashHeader = () => {
   }
 
   const logoutButton = (
-    <button className="icon-button" title="Logout" onClick={sendLogout}>
+    <button className="icon-button icon-button--logout" title="Logout" onClick={sendLogout}>
       <FontAwesomeIcon icon={faRightFromBracket} />
     </button>
   );
@@ -98,7 +89,7 @@ const DashHeader = () => {
 
   let buttonContent;
   if (isLoading) {
-    buttonContent = <p>Logging Out...</p>;
+    buttonContent = <p style={{ color: "var(--COLOR-MUTED)", fontSize: "0.85rem" }}>Logging out...</p>;
   } else {
     buttonContent = (
       <>
@@ -111,23 +102,19 @@ const DashHeader = () => {
     );
   }
 
-  const content = (
+  return (
     <>
       <p className={errClass}>{error?.data?.message}</p>
-
       <header className="dash-header">
         <div className={`dash-header__container ${dashClass}`}>
           <Link to="/dash">
-            <h1 className="dash-header__title">CRM Mern stack app</h1>
+            <h1 className="dash-header__title">CRM Platform</h1>
           </Link>
-          <nav className="dash-header__nav">
-            {buttonContent}
-          </nav>
+          <nav className="dash-header__nav">{buttonContent}</nav>
         </div>
       </header>
     </>
   );
-
-  return content;
 };
+
 export default DashHeader;
