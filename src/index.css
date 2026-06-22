@@ -593,6 +593,7 @@ tr:hover .table__cell {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--BORDER);
   margin-bottom: 0.5rem;
+  position: relative;
 }
 
 .form__title-row h2 {
@@ -634,6 +635,8 @@ tr:hover .table__cell {
   gap: 0.4rem;
   position: absolute;
   right: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .form__row {

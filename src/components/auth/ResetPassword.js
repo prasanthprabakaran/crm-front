@@ -1,17 +1,17 @@
 import {useState} from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useResetPasswordMutation } from "../../features/auth/authApiSlice";
 // import './ResetPassword.css';
 
 const ResetPassword = ({match}) => {
 
-  const [resetPassword, { isLoading, isError}] = useResetPasswordMutation();
+  const [resetPassword] = useResetPasswordMutation();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const params = useParams();
+  const navigate = useNavigate();
 
   const resetPasswordUser = async (e) => {
     e.preventDefault();
@@ -33,9 +33,9 @@ const ResetPassword = ({match}) => {
       //   },
       //   config
       // );
-      resetPassword({ password: params.token})
+      resetPassword({ password, token: params.resetToken });
       setSuccess(true);
-      Navigate("/");
+      navigate("/");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {

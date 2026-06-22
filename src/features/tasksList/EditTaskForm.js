@@ -22,7 +22,7 @@ const EditTaskForm = ({ task, users }) => {
   const [text, setText] = useState(task.text);
   const [completed, setCompleted] = useState(task.completed);
   const [userId, setUserId] = useState(task.user);
-  const [userName, setUserName] = useState(task.username);
+  const [userName] = useState(task.username);
 
   useEffect(() => {
     if (isSuccess || isDelSuccess) {
